@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/style.css' %}">
+</head>
+<body>
+<div class="total">
+    <div class="covid">
+        <a href="/COVID/" class="covid_title">
+            <span class="covid_span">
+                <font style="vertical-align: inherit;" >COVID-19疫情图</font>
+            </span>
+        </a>
+    </div>
+
+    <div class="webgis_list">
+        <div class="webgis_title_border">
+            <div class="webgis_title">
+                 <span>GIS功能</span>
+            </div>
+        </div>
+        <div class="funciton_list">
+            <a href="/getCardPassword/" class="function_detail">
+                <span class="text_tag">
+                    <font style="vertical-align: inherit;" >等值图</font>
+                </span>
+            </a>
+            <a href="/dotDensity/" class="function_detail">
+                <span class="text_tag">
+                    <font style="vertical-align: inherit;" >点密度图</font>
+                </span>
+            </a>
+            <a href="/showLidar/" class="function_detail">
+                <span class="text_tag">
+                    <font style="vertical-align: inherit;" >LIDAR可视化</font>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

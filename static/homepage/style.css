@@ -1,0 +1,124 @@
+        li a{
+           color : black;
+           }
+        .total{
+                   width:calc(99vw)
+               }
+        .covid{
+           width:calc(99vw);
+           height:500px;
+           position: relative;
+           }
+        .covid_title{
+           width:calc(99vw);
+           height:500px;
+           float:right;
+           display:block;
+           overflow: hidden;
+
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-position: center;
+           background-blend-mode: multiply;
+
+           line-height: 500px;
+           text-align: center;
+           text-decoration: none;
+           background-color: rgba(169,169,169, 0.85);
+           color:#ffffff;
+           background-image: url("images/covid.jpg");
+           background-size: 100% 100%
+
+        }
+        .covid_span{
+           font-family : "微软雅黑";
+           font-size: 40px;
+        }
+        .webgis_list{
+              width:calc(99vw)
+               }
+        .webgis_title_border{
+           width:calc(99vw);
+           height:100px;
+
+        }
+        .webgis_title{
+           margin-top:20px;
+           width:calc(99vw);
+           height:100px;
+           top:20px;
+
+           font-family : "微软雅黑";
+           font-size: 32px;
+           text-indent:30px;
+           line-height: 100px;
+           color:rgb(255, 255, 255);
+
+           background: linear-gradient(to right,rgb(0,125,101),rgb(29,149,63));
+
+        }
+        .funciton_list {
+                   width:calc(100vw)
+                   }
+
+        .function_detail{
+           display:block;
+           width:33%;
+           height:300px;
+           z-indent:-1;
+           overflow: hidden；
+           position: relative;
+           float:left;
+
+
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-position: center;
+           background-blend-mode: multiply;
+
+           transition:all 0.5s ease-in 0s;
+
+
+           line-height: 300px;
+           text-align: center;
+           color: #ffffff;
+           text-decoration: none
+           }
+        .function_detail:nth-of-type(1){
+           background-color: rgba(171, 60, 22, 0.85);
+           background-image: url("images/isogram.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:nth-of-type(2){
+           background-color: rgba(0, 94, 149, 0.85);
+           background-image: url("images/dot_density.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:nth-of-type(3){
+           background-color: rgba(51, 128, 51, 0.85);
+           background-image: url("images/shape_relief.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:nth-of-type(4){
+           background-color: rgba(255,222,173, 0.85);
+           background-image: url("images/contours.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:nth-of-type(5){
+           background-color: rgba(139,0,139, 0.85);
+           background-image: url("images/showLidar.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:nth-of-type(6){
+           background-color: rgba(51, 128, 51, 0.85);
+           background-image: url("images/shape_relief.jpg");
+           background-size: 100% 100%
+        }
+        .function_detail:hover{
+           background-color: rgba(169,169,169, 0.85);
+           background-size:110% 110%;
+        }
+        span.text_tag{
+           font-family : "微软雅黑";
+           font-size: 25px;
+        }

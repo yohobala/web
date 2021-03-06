@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
+from django.http import HttpResponse
+from django.urls import path,include
+from django.conf.urls import  url
+from django.conf import settings
+from django.views import static
+#总链接，为了连接到每个app,如果不设置，urls里面就找不到，比如不设置COVID
+#就不能打开127.0.0.1:8000/COVID
 urlpatterns = [
+    #主页
+    path('',include('homepage.urls')),
+    #小功能页面
+    #得到卡密
+    path('getCardPassword/',include('getCardPassword.urls')),
     path('admin/', admin.site.urls),
+    url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT }, name='static'),
 ]
