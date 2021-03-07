@@ -10,7 +10,6 @@
            overflow: hidden；
            position: relative;
            float:left;
-		   background-color: #5897FB;
 }
 	.text-tag{
 			   width:10%;
@@ -32,33 +31,20 @@
 		width:10%;
 		height:20px;
 	}
-.select-color {
-}
-.select-color .select-color-aaa {
-	display:inline-block;width:256px;height:256px;background-color:#ff0000;
-}
-.select-color .select-color-aa {
-	width:256px;height:256px;background-image:linear-gradient(to right,#fff,rgba(255,255,255,0));
-}
-.select-color .select-color-a {
-	width:256px;height:256px;background-image:linear-gradient(to top,#000,rgba(255,255,255,0));
-}
-.select-color .select-color-a-pos {
-	width:1px;height:1px;
-	border: 1px solid red;
-	background-color: #fff;
-	position: relative;
-}
-.select-color .select-color-b-group {
-	display:inline-block;width:220px;height:256px;
-}
-.select-color .select-color-b {
-	display:inline-block;width:32px;height:256px;
-}
-.select-color .select-color-ccc {
-	display:inline-block;width:128px;height:32px;
-}
-.select-color .select-color-cc {
-	display:inline-block;width:128px;min-height:40px;
-	border:1px solid black;
-}
+video{  
+	position: fixed;  
+	right: 0px;  
+	bottom: 0px;   
+	height: calc(100%);
+	width: calc(100%);  
+	object-fit:fill;
+	/*加滤镜*/
+	/*filter: blur(15px); //背景模糊设置 */
+	/*-webkit-filter: grayscale(100%);*/  
+	/*filter:grayscale(100%); //背景灰度设置*/  
+	z-index:-11
+}  
+source{  
+	height: calc(100%); 
+	width: calc(100%);  
+} 

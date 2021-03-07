@@ -1,39 +1,40 @@
-        li a{
-           color : black;
-           }
+ul{
+	position: absolute;
+	font-size:14px;
+	width: 100%;
+	left: 0px;
+}
+li{
+	float:left;/*改动的地方*/
+	width:20%;
+	height: 30px;
+	background-color:#ff9137;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+a:link,a:visited,a:active{
+	color:#fff;
+	text-decoration:none;
+}
+li:hover{
+	background-color: #FFFFFF;
+	color: #b3b3b3;
+}
+a:hover{
+	color:#b3b3b3;
+}
+a{
+	display:block;/*整体变为可点击区域，而不只是字*/
+}
         .total{
                    width:calc(99vw)
                }
-        .covid{
+        .menus{
            width:calc(99vw);
            height:500px;
            position: relative;
            }
-        .covid_title{
-           width:calc(99vw);
-           height:500px;
-           float:right;
-           display:block;
-           overflow: hidden;
-
-           background-size: cover;
-           background-repeat: no-repeat;
-           background-position: center;
-           background-blend-mode: multiply;
-
-           line-height: 500px;
-           text-align: center;
-           text-decoration: none;
-           background-color: rgba(169,169,169, 0.85);
-           color:#ffffff;
-           background-image: url("images/covid.jpg");
-           background-size: 100% 100%
-
-        }
-        .covid_span{
-           font-family : "微软雅黑";
-           font-size: 40px;
-        }
         .webgis_list{
               width:calc(99vw)
                }
@@ -122,3 +123,21 @@
            font-family : "微软雅黑";
            font-size: 25px;
         }
+		
+video{  
+	position: absolute;  
+	right: 0px;  
+	bottom: 0px;   
+	height: calc(100%);
+	width: calc(100%);  
+	object-fit:fill;
+	/*加滤镜*/
+	/*filter: blur(15px); //背景模糊设置 */
+	/*-webkit-filter: grayscale(100%);*/  
+	/*filter:grayscale(100%); //背景灰度设置*/  
+	z-index:-11
+}  
+source{  
+	height: calc(100%); 
+	width: calc(100%);  
+} 
