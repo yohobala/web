@@ -1,0 +1,5 @@
+导出包
+pip3 freeze > package.txt
+
+安装
+pip install -r requriements.txt
