@@ -3,3 +3,19 @@ pip3 freeze > package.txt
 
 安装
 pip install -r requriements.txt
+
+
+如果遇到权限不足 500的错误
+1.右键点击编辑权限---添加---输入IIS_IUSRS(一定要输入这个)
+
+
+fastcgi 错误
+IIS管理器---应用程序池---进程模型---标识---LocalSystem
+
+
+样式找不到
+1.static路径设置不对
+
+2.权限，权限分为2个，第一个是IIS_IUSRS,第二个是IUSR
+
+   第二个权限IUSR,在IIS-身份验证--匿名身份验证--IUSR--权限添加IUSR
