@@ -33,6 +33,13 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'getCardPassword',
     'homepage',
+    'dot_density',
+    'COVID',
+    'isogram',
+    'showShp',
+    'showLidar',
+    'drawContours',
+    'shaded_relief',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

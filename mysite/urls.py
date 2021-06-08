@@ -27,6 +27,13 @@ urlpatterns = [
     #小功能页面
     #得到卡密
     path('getCardPassword/',include('getCardPassword.urls')),
+    path('dotDensity/', include('dot_density.urls')),
+    path('COVID/', include('COVID.urls')),
     path('admin/', admin.site.urls),
+    path('isogram/', include('isogram.urls')),
+    path('showShp/', include('showShp.urls')),
+    path('showLidar/', include('showLidar.urls')),
+    path('drawContours/', include('drawContours.urls')),
+    path('shadedRelief/', include('shaded_relief.urls')),
     url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT }, name='static'),
 ]

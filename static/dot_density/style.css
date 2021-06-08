@@ -1,0 +1,93 @@
+*{
+      -webkit-user-select: auto;
+}
+.first{
+           width:99%;
+           height: 90px;
+}
+.second{
+           width:99%;
+           height: 40px;
+}
+.third{
+           width:99%;
+           height: 40px;
+
+}
+.div1{
+           width:30%;
+           height:30px;
+           margin-top:10px;
+           margin-left:5px;
+           margin-right:5px;
+           overflow: hidden；
+           position: relative;
+           float:left;
+
+}
+.div2{
+           width:45%;
+           height:30px;
+           margin-top:10px;
+           margin-left:5px;
+           margin-right:5px;
+           overflow: hidden；
+           position: relative;
+           float:left;
+
+}
+.text_tag{
+           width:20%;
+           font-family : "楷体";
+           font-size: 10px;
+
+           line-height: 20px;
+           text-align: center;
+           text-decoration: none
+           position: relative;
+           float:left;
+}
+.rule_text_tag{
+           width:35%;
+           font-family : "楷体";
+           font-size: 10px;
+           text-align: center;
+           text-decoration: none
+           position: relative;
+           float:left;
+}
+.frame{
+           width:78%;
+           height:20px;
+
+}
+.select-color {
+}
+.select-color .select-color-aaa {
+	display:inline-block;width:256px;height:256px;background-color:#ff0000;
+}
+.select-color .select-color-aa {
+	width:256px;height:256px;background-image:linear-gradient(to right,#fff,rgba(255,255,255,0));
+}
+.select-color .select-color-a {
+	width:256px;height:256px;background-image:linear-gradient(to top,#000,rgba(255,255,255,0));
+}
+.select-color .select-color-a-pos {
+	width:1px;height:1px;
+	border: 1px solid red;
+	background-color: #fff;
+	position: relative;
+}
+.select-color .select-color-b-group {
+	display:inline-block;width:220px;height:256px;
+}
+.select-color .select-color-b {
+	display:inline-block;width:32px;height:256px;
+}
+.select-color .select-color-ccc {
+	display:inline-block;width:128px;height:32px;
+}
+.select-color .select-color-cc {
+	display:inline-block;width:128px;min-height:40px;
+	border:1px solid black;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>LIDAR可视化</title>
+</head>
+<body>
+    <form id="form1" enctype="multipart/form-data" target="ifm1">
+        <iframe id="ifm1" name="ifm1" style="display: none;"></iframe>
+        <input type="file" name="file" onchange="changeUpalod();" />
+        <input type="text" name="cell" placeholder="格网尺寸" />
+        <input type="submit" id="databtn" name="databtn" value="提交"/>
+    </form>
+    <img src=''  id="img">
+<script>
+
+ $(document).ready(function(){
+    $("#databtn").click(function () {
+
+        //创建对象
+        var formdata = new FormData();
+        //这里FormData是一个jquery对象，用来绑定values对象，也可以用来上传二进制文件，有了他就可以不用form表单来上传文件了
+
+        var file_obj = $('[name=file]')[0].files[0];
+        var cell = $('[name=cell]').val();
+        formdata.append('file_obj',file_obj);
+        formdata.append('cell',cell);
+
+    $.ajax({
+        url: '',
+        type: 'post',
+        data: formdata,
+        //这两个要必须写
+        processData:false,  //不预处理数据  因为FormData 已经做了
+        contentType:false,  //我不指定编码了 因为FormData 已经做了
+        success: function (data) {
+            $("#img").attr("src", data);
+            $("#img").show();
+            }
+        })
+    })
+ })
+</script>
+</body>
+</html>

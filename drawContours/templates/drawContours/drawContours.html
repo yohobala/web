@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://echarts.apache.org/zh/dist/echarts-en.min.js"></script>
+    <script src="https://echarts.apache.org/zh/dist/echarts-gl.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <meta charset="UTF-8">
+    <title>等高线</title>
+         {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'drawContours/style.css' %}">
+</head>
+<body>
+    <form id="form1" enctype="multipart/form-data" target="ifm1">
+        <iframe id="ifm1" name="ifm1" style="display: none;"></iframe>
+        <input type="file" name="file1" onchange="changeUpalod();" />
+         <div class="first">
+             <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >等高线间隔</font>
+                </span>
+                <input type="text" name="interval" class="frame" placeholder="等高线间隔" />
+             </div>
+             <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >等高线起始高度</font>
+                </span>
+                <input type="text" name="height" class="frame" placeholder="等高线起始高度" />
+            </div>
+             <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >图像宽度</font>
+                </span>
+                <input type="text" name="iwidth1" class="frame" placeholder="图像宽" />
+            </div>
+             <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >图像高度</font>
+                </span>
+                <input type="text" name="iheight1" class="frame" placeholder="图像高" />
+            </div>
+            <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >颜色</font>
+                </span>
+                <input type="text" name="color1" class="frame" placeholder="等高线颜色，十六进制如白色#FFFFFF" />
+            </div>
+        </div>
+        <div class="third">
+            <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >提交</font>
+                </span>
+                <input type="submit" id="filebtn" name="filebtn"  value="提交"/>
+            </div>
+        </div>
+
+    </form>
+    <form id="form2" enctype="multipart/form-data" target="ifm1">
+        <iframe id="ifm2" name="ifm2" style="display: none;"></iframe>
+        <input type="file" name="file2" onchange="changeUpalod();" />
+        <div class="first">
+            <div class="div1" >
+                <div class="text_tag">
+                    <span >
+                        <font style="vertical-align: inherit;" >图像宽度</font>
+                    </span>
+                </div>
+                <input type="text" name="iwidth2" class="frame" placeholder="输出图像的宽" />
+            </div>
+            <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >图像高度</font>
+                </span>
+                <input type="text" name="iheight2" class="frame" placeholder="输出图像的高" />
+            </div>
+            <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >等高线颜色</font>
+                </span>
+                <input type="text" name="color2" class="frame" placeholder="等高线颜色，十六进制如白色#FFFFFF" />
+            </div>
+
+        </div>
+        <div class="third">
+            <div class="div1" >
+               <span class="text_tag">
+                    <font style="vertical-align: inherit;" >提交</font>
+                </span>
+                <input type="submit" id="databtn" name="databtn"  value="提交"/>
+            </div>
+        </div>
+
+    </form>
+    <div class="test">
+    <div class="row">
+	<div class="col-md-12">
+		<div id="p2" class="select-color">
+
+			<div class="select-color-b-group">
+				<div id="select-color-b-ffxx00"
+					class="select-color-b" style="background: -webkit-linear-gradient(top,#f00 0%,#ff0 100%);">
+				</div>
+				<div id="select-color-b-xxff00"
+					class="select-color-b"  style="background: -webkit-linear-gradient(top,#0f0 0%,#ff0 100%);">
+				</div>
+				<div id="select-color-b-00ffxx"
+					class="select-color-b"  style="background: -webkit-linear-gradient(top,#0f0 0%,#0ff 100%);">
+				</div>
+				<div id="select-color-b-00xxff"
+					class="select-color-b"  style="background: -webkit-linear-gradient(top,#00f 0%,#0ff 100%);">
+				</div>
+				<div id="select-color-b-xx00ff"
+					class="select-color-b"  style="background: -webkit-linear-gradient(top,#00f 0%,#f0f 100%);">
+				</div>
+				<div id="select-color-b-ff00xx"
+					class="select-color-b"  style="background: -webkit-linear-gradient(top,#f00 0%,#f0f 100%);">
+				</div>
+				<div class="select-color-b" style="display:none;background: -webkit-linear-gradient(top,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);">
+				</div>
+			</div>
+
+			<div class="select-color-aaa" id="select-color-aaa" style="background-color:#ff0000">
+				<div class="select-color-aa" id="select-color-aa">
+					<div class="select-color-a" id="select-color-a">
+						<div class="select-color-a-pos" id="select-color-a-pos">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="select-color-ccc">
+				<div class="select-color-cc">
+					<span id="select-color-result"></span>
+				</div>
+				<div class="select-color-cc" id="select-color-show">
+				</div>
+				<div>
+					<button id="copyBT">复制</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+    </div></div>
+    <img src=''  id="img">
+    <form id="form3" enctype="multipart/form-data" target="ifm1">
+         <iframe id="ifm3" name="ifm3" style="display: none;"></iframe>
+         <input type="file" name="file3" onchange="changeUpalod();" />
+        <input type="submit" id="databtn2" name="databtn2" value="3维可视化"/>
+    </form>
+    <div id="main" style="width: 1000px;height:1000px;"></div>
+<script>
+
+ $(document).ready(function(){
+    $("#filebtn").click(function () {
+
+        //创建对象
+        var formdata = new FormData();
+        //这里FormData是一个jquery对象，用来绑定values对象，也可以用来上传二进制文件，有了他就可以不用form表单来上传文件了
+
+        var file_obj = $('[name=file1]')[0].files[0];
+        var interval = $('[name=interval]').val();
+        var height = $('[name=height]').val();
+        var iwidth = $('[name=iwidth1]').val();
+        var iheight = $('[name=iheight1]').val();
+        var color = $('[name=color1]').val();
+        formdata.append('file_obj',file_obj);
+        formdata.append('interval',interval);
+        formdata.append('height',height);
+        formdata.append('iwidth',iwidth);
+        formdata.append('iheight',iheight);
+        formdata.append('color',color);
+        formdata.append('flow','1');
+
+    $.ajax({
+        url: '',
+        type: 'post',
+        data: formdata,
+        //这两个要必须写
+        processData:false,  //不预处理数据  因为FormData 已经做了
+        contentType:false,  //我不指定编码了 因为FormData 已经做了
+        success: function (data) {
+            $("#img").attr("src", data);
+            $("#img").show();
+            }
+        })
+    })
+ })
+ $(document).ready(function(){
+    $("#databtn").click(function () {
+
+        //创建对象
+        var formdata = new FormData();
+        //这里FormData是一个jquery对象，用来绑定values对象，也可以用来上传二进制文件，有了他就可以不用form表单来上传文件了
+
+        var file_obj = $('[name=file2]')[0].files[0];
+        var iwidth = $('[name=iwidth2]').val();
+        var iheight = $('[name=iheight2]').val();
+        var color = $('[name=color2]').val();
+        formdata.append('file_obj',file_obj);
+        formdata.append('iwidth',iwidth);
+        formdata.append('iheight',iheight);
+        formdata.append('color',color);
+        formdata.append('flow','2');
+
+    $.ajax({
+        url: '',
+        type: 'post',
+        data: formdata,
+        //这两个要必须写
+        processData:false,  //不预处理数据  因为FormData 已经做了
+        contentType:false,  //我不指定编码了 因为FormData 已经做了
+        success: function (data) {
+            $("#img").attr("src", data);
+            $("#img").show();
+            }
+        })
+    })
+ })
+ $(document).ready(function(){
+    $("#databtn2").click(function () {
+
+
+        //创建对象
+        var formdata = new FormData();
+        var file_obj = $('[name=file3]')[0].files[0];
+        formdata.append('file_obj',file_obj);
+        formdata.append('flow','3');
+        $.ajax({
+          url: '',
+          type: 'post',
+          data: formdata,
+          //这两个要必须写
+          processData:false,  //不预处理数据  因为FormData 已经做了
+          contentType:false,  //我不指定编码了 因为FormData 已经做了
+
+          success: function (path) {
+                  // 基于准备好的dom，初始化echarts实例
+              var myChart = echarts.init(document.getElementById('main'));
+              myChart.showLoading();
+              data = path.data
+              myChart.setOption({
+                grid3D: {
+                   environment: '#000',
+                   light: {
+                       main: {
+                       shadow: true,
+                       quality: 'ultra',
+                       intensity: 1.5
+                       }
+                   }
+                },
+                xAxis3D: {
+                },
+                yAxis3D: {
+                },
+                zAxis3D: {
+                },
+                visualMap: {
+                   show: false,
+                   min: 0,
+                   max: 1000,
+                   inRange: {
+                       color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
+                       symbolSize: [30, 100]
+                   },
+                },
+                dataset: {
+                   source: data
+                },
+                series: [{
+                   type: 'bar3D',
+                   shading: 'realistic',
+                   data: data,
+                   barSize: 1,
+                }]
+              })
+               myChart.hideLoading();
+          }
+        })
+    })
+ })
+</script>
+<script>
+// 颜色选择
+var select_color_mark = {};
+function select_color_init() {
+	// 右边色条绑定点击和拖动事件
+	select_color_b_bind('ffxx00');
+	select_color_b_bind('xxff00');
+	select_color_b_bind('00ffxx');
+	select_color_b_bind('00xxff');
+	select_color_b_bind('xx00ff');
+	select_color_b_bind('ff00xx');
+	// 左边绑定事件
+	select_color_a_bind();
+}
+function select_color_a_bind() {
+	var e;
+	e = document.getElementById('select-color-a');
+	e.onclick = function(event) {select_color_a_clk(event);}
+	e.onmousedown = function(event) {select_color_a_mdown(event);}
+	e.onmouseup = function(event) {select_color_a_mup(event);}
+	e.onmousemove = function(event) {select_color_a_mmove(event);}
+}
+function select_color_a_mdown(event) {
+	select_color_mark['ffffff'] = true;
+}
+function select_color_a_mup(event) {
+	select_color_mark['ffffff'] = false;
+}
+function select_color_a_mmove(event) {
+	if (select_color_mark['ffffff']) {
+		select_color_a_clk(event);
+	}
+}
+function select_color_a_clk(event) {
+	if (!event)
+		return;
+	// x y坐标获取
+	var x = event.offsetX;
+	var y = event.offsetY;
+	if (x < 0 || y < 0)
+		return;
+	console.log(x + ", " + y);
+	var pos = document.getElementById('select-color-a-pos');
+	pos.style.top = y + "px";
+	pos.style.left = x + "px";
+	// 底色获取
+	var c = document.getElementById('select-color-aaa').style.backgroundColor;
+	//console.log(c); // rgb(255, 0, 0)
+	c = c.substring(4, c.length - 1);
+	var arr = c.split(/\s*,\s*/g);
+	var r = parseInt(arr[0]);
+	var g = parseInt(arr[1]);
+	var b = parseInt(arr[2]);
+	console.log(r + "," + g + "," + b);
+
+	// 计算结果：
+	//     白--彩
+	//     黑--黑
+	// 先算白到彩之间的颜色与x的关系，再算得到的颜色到黑色与y的关系
+	r = 256 - x + x * r / 256; // 化简 (256 - x) * ((256 - r) / 256) + r;
+	g = 256 - x + x * g / 256;
+	b = 256 - x + x * b / 256;
+	//console.log(r + "," + g + "," + b);
+	r = r - r * y / 256; // 化简 r / 256 * (256 - y);
+	g = g - g * y / 256;
+	b = b - b * y / 256;
+	//console.log(r + "," + g + "," + b);
+	Math.floor(5/2)
+	r = Math.floor(r)
+	g = Math.floor(g)
+	b = Math.floor(b)
+	//console.log(r + "," + g + "," + b);
+	var ret1 = "rgb(" + r + "," + g + "," + b + ")";
+	var ret2 = "#";
+	ret2 += r < 10 ? ("0" + r) : (r.toString(16));
+	ret2 += g < 10 ? ("0" + g) : (g.toString(16));
+	ret2 += b < 10 ? ("0" + b) : (b.toString(16));
+
+	document.getElementById('select-color-show').style.backgroundColor = ret2;
+	document.getElementById('select-color-result').innerHTML =  ret2;
+}
+function select_color_b_bind(type) {
+	var e;
+	e = document.getElementById('select-color-b-' + type);
+	e.onclick = function(event) {select_color_b_clk(event, type);}
+	e.onmousedown = function(event) {select_color_b_mdown(event, type);}
+	e.onmouseup = function(event) {select_color_b_mup(event, type);}
+	e.onmousemove = function(event) {select_color_b_mmove(event, type);}
+}
+function select_color_b_mdown(event, type) {
+	select_color_mark[type] = true;
+}
+function select_color_b_mup(event, type) {
+	select_color_mark[type] = false;
+}
+function select_color_b_mmove(event, type) {
+	if (select_color_mark[type])
+		select_color_b_clk(event, type);
+}
+function select_color_b_clk(event, type) {
+	var x = event.offsetX;
+	var y = event.offsetY;
+	//console.log(x + ", " + y);
+
+	var z = y.toString(16);
+	if (y < 10)
+		z = '0' + z;
+	var c = type.replace('xx', z);
+	//console.log(type + ' -> ' + c);
+	document.getElementById('select-color-aaa').style.backgroundColor = '#' + c;
+}
+
+select_color_init();
+</script>
+    <script>
+      function copyArticle(event) {
+        const range = document.createRange();
+        range.selectNode(document.getElementById('select-color-result'));
+
+        const selection = window.getSelection();
+        if(selection.rangeCount > 0) selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+      }
+
+      document.getElementById('copyBT').addEventListener('click', copyArticle, false);
+    </script>
+</body>
+</html>
